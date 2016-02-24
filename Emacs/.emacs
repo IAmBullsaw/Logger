@@ -13,5 +13,13 @@
  )
 
 (font-lock-add-keywords 'text-mode
-  '(("\\([\\[][A-Za-z0-9\s-:]+\\]\s\\)" 1 font-lock-warning-face prepend)
+  '(("\\([\\[]INFO[A-Za-z0-9\s-:]+\\]\s\\)" 1 font-lock-comment-face prepend)
+    ))
+
+(font-lock-add-keywords 'text-mode
+  '(("\\([\\[]WARN[A-Za-z0-9\s-:]+\\]\s\\)" 1 font-lock-function-name-face prepend)
+    ))
+
+(font-lock-add-keywords 'text-mode
+  '(("\\([\\[][A-Za-z0-9\s-:]ERR[A-Za-z0-9\s-:]+\\]\s\\)" 1 font-lock-warning-face prepend)
     ))
