@@ -1,19 +1,20 @@
-##How to use this:
-#Construct logger and start logging to log.txt:
+#How to use this:
+##Construct logger and start logging to log.txt:
   Logger l{"log.txt"};
 
-#Set log levels:
+##Set log levels:
   l.log_levels(false,true,true)
 sets: log_info to false,
       log_warn to true,
       log_error to true.
 
-#Set debug mode: (Will cout everything AND log everything... EVERYTHING!!)
+##Set debug mode: (Will log everything... EVERYTHING!!)
   l.debug_mode(false);
 sets: log_debug = false.
-default value is true.
+default value is false.
+When set to true, all log level flags are set to true.
 
-#how to log:
+##how to log:
 
 Proper logging:
   l.log("Where","Message",int)
@@ -36,3 +37,10 @@ Quick logging:
 these all call to 
   l.log("","message",level)
 with appropriate level set.
+
+##Wish to cout AND log?
+  l.cout_mode(true);
+will do the trick!
+
+##Change logfile? Even while doing logging?
+  l.set_logfile("NEW LOgFiLeNaMe!?");

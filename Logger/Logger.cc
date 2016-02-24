@@ -31,7 +31,9 @@ bool Logger::open_current_log(){
 
 void Logger::log( string const& where, string const& message , int const& level) {
   write_to_log( make_pretty( where, message, level) );
-  cout_log(where,message,level); 
+  if (log_cout) {
+    cout_log(where,message,level); 
+  }
 }
 
 void Logger::warn(string const& message) {
@@ -94,6 +96,10 @@ void Logger::debug_mode(bool const& onOff) {
     log_warn = true;
     log_error = true;
   }
+}
+
+void Logger::cout_mode(bool const& onOff) {
+  log_cout = onOff;
 }
 
 void Logger::log_levels(bool const& info, bool const& warn ,bool const& error ) {
@@ -164,4 +170,8 @@ unsigned long int Logger::filesize(string const& filename)
   std::ifstream in(filename, std::ifstream::ate | std::ifstream::binary);
   size = static_cast<unsigned long int>( in.tellg() );
   return size; 
+}
+
+void Logger::set_log(string const& filename_in) {
+  current_log = filename_in;
 }

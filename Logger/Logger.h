@@ -13,6 +13,7 @@ class Logger{
   void log(std::string const& where="", std::string const& message="", int const& level=0);
   bool is_it_logging() const;
   void debug_mode(bool const& onOff);
+  void cout_mode(bool const& onOff);
   void set_log(std::string const& filename_in);
   void warn(std::string const& message);
   void err(std::string const& message);
@@ -31,6 +32,7 @@ class Logger{
   bool log_info{true};
   bool log_warn{true};
   bool log_error{true};
+  bool log_cout{false};
   std::string current_log;
   std::ofstream file;
 };
