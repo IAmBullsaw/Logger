@@ -10,6 +10,8 @@
 
 (load-theme 'misterioso)
 (tool-bar-mode -1)
+(setq inhibit-startup-message -1)
+(setq inhibit-startup-screen -1)
 (display-splash-screen -1)
 (save-place-mode 1)
 (global-linum-mode 1)
@@ -19,6 +21,22 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "C-x k") #'kill-this-buffer)
 
+
+;; tick tock goes the clock
+(defface bullsaw-display-time
+  '((((type x w32 mac))
+     ;; #060525 is the background colour of my default face.
+     (:foreground "red" :inherit bold))
+    (((type tty))
+     (:foreground "black")))
+  "Face used to display the time in the mode line.")
+
+;; This causes the current time in the mode line to be displayed in
+;; `bullsaw-display-time-face' to make it stand out visually.
+(setq display-time-string-forms
+      '((propertize (concat " " 24-hours ":" minutes " ")
+ 		    'face 'bullsaw-display-time)))
+(display-time)
 
 ;; I like my backups hidden and in abundance
 (unless (file-exists-p "~/.emacs.d/backups")
@@ -75,6 +93,15 @@
 	      ("M-," . jedi:goto-definition-pop-marker))
   :init
   (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi))))
+
+(use-package magit
+  :ensure t)
+
+;; mapping ctrl ö and ä to {}
+(define-key key-translation-map (kbd "C-ö") (kbd "{"))
+(define-key key-translation-map (kbd "C-ä") (kbd "}"))
+;; mapping to magit
+(global-set-key (kbd "C-x g") 'magit-status )
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
