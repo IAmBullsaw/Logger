@@ -10,6 +10,8 @@
 
 (load-theme 'misterioso)
 (tool-bar-mode -1)
+(setq inhibit-startup-message -1)
+(setq inhibit-startup-screen -1)
 (display-splash-screen -1)
 (save-place-mode 1)
 (global-linum-mode 1)
